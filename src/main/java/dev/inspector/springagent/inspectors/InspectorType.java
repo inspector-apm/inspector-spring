@@ -1,4 +1,4 @@
-package dev.inspector.springagent.interceptors;
+package dev.inspector.springagent.inspectors;
 
 import dev.inspector.agent.executor.Inspector;
 import dev.inspector.agent.model.Config;
@@ -11,14 +11,14 @@ import org.springframework.stereotype.Component;
 
 import static dev.inspector.agent.App.waitMillis;
 
-@Component
-public class InspectorBean {
+public abstract class InspectorType {
 
-    private Inspector inspector;
+    private final Inspector inspector;
     private Transaction transaction;
+    private long threadId;
 
     @Autowired
-    public InspectorBean(@Value("${inspector.ingestion-key}")String ingestionKey) {
+    public InspectorType(String ingestionKey) {
         Config config = new Config(ingestionKey);
         Inspector inspector = new Inspector(config);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> onShutdown(inspector)));
@@ -44,6 +44,7 @@ public class InspectorBean {
     }
 
     public void createTransaction(String transactionName) {
+        threadId = Thread.currentThread().getId();
         transaction = inspector.startTransaction(transactionName);
     }
 
@@ -55,5 +56,9 @@ public class InspectorBean {
 
     public Inspector getInspector() {
         return inspector;
+    }
+
+    public long getThreadId() {
+        return threadId;
     }
 }

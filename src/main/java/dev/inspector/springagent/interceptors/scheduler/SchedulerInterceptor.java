@@ -1,6 +1,7 @@
 package dev.inspector.springagent.interceptors.scheduler;
 
-import dev.inspector.springagent.interceptors.InspectorBean;
+import dev.inspector.springagent.inspectors.InspectorType;
+import dev.inspector.springagent.inspectors.SchedulerInspector;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -12,16 +13,16 @@ import org.springframework.stereotype.Component;
 public class SchedulerInterceptor {
 
     @Autowired
-    private InspectorBean inspectorBean;
+    private SchedulerInspector schedulerInspector;
 
     @Before("@annotation(org.springframework.scheduling.annotation.Scheduled)")
     public void beforeScheduledTask() {
-        inspectorBean.createTransaction("Scheduler Transaction");
+        schedulerInspector.createTransaction("Scheduler Transaction");
     }
 
     @After("@annotation(org.springframework.scheduling.annotation.Scheduled)")
     public void afterScheduledTask() {
-        inspectorBean.createSegment("Scheduler async", "Scheduler label");
-        inspectorBean.flushTransaction("Scheduler Context");
+        schedulerInspector.createSegment("Scheduler async", "Scheduler label");
+        schedulerInspector.flushTransaction("Scheduler Context");
     }
 }
