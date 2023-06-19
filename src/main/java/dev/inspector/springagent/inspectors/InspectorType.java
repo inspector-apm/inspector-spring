@@ -5,9 +5,6 @@ import dev.inspector.agent.model.Config;
 import dev.inspector.agent.model.Segment;
 import dev.inspector.agent.model.Transaction;
 import dev.inspector.agent.utility.JsonBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import static dev.inspector.agent.App.waitMillis;
 
@@ -17,7 +14,6 @@ public abstract class InspectorType {
     private Transaction transaction;
     private long threadId;
 
-    @Autowired
     public InspectorType(String ingestionKey) {
         Config config = new Config(ingestionKey);
         Inspector inspector = new Inspector(config);
