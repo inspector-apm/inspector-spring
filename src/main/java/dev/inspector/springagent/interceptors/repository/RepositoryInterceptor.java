@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class QueryInterceptor {
+public class RepositoryInterceptor {
 
     @Autowired
     InspectorPicker inspectorPicker;

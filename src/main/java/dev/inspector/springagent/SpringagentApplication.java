@@ -17,12 +17,13 @@ public class SpringagentApplication implements WebMvcConfigurer {
         SpringApplication.run(SpringagentApplication.class, args);
     }
 
-    /*@Bean
+    // Creates a User entry at startup
+    @Bean
     CommandLineRunner commandLineRunner(TestRepository testRepository) {
         return args -> {
             User user = new User(1L, "Gianni");
             testRepository.save(user);
         };
-    }*/
+    }
 
 }
