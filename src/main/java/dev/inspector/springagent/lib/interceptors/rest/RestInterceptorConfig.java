@@ -1,4 +1,4 @@
-package dev.inspector.springagent.interceptors.rest;
+package dev.inspector.springagent.lib.interceptors.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

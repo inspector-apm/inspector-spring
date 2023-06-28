@@ -1,4 +1,4 @@
-package dev.inspector.springagent.inspectors;
+package dev.inspector.springagent.lib.inspectors;
 
 import dev.inspector.agent.executor.Inspector;
 import dev.inspector.agent.model.Config;
@@ -44,10 +44,10 @@ public abstract class InspectorType {
         transaction = inspector.startTransaction(transactionName);
     }
 
-    public void flushTransaction(String contextLabel) {
+    public void closeTransaction(String contextLabel) {
         transaction.setResult("SUCCESS");
         transaction.addContext(contextLabel, (new JsonBuilder()).put("contextkey", "contextvalue").build());
-        inspector.flush();
+        transaction.end();
     }
 
     public Inspector getInspector() {

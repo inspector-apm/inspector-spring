@@ -4,5 +4,10 @@ spring:
     username: sa
     password: password
     driverClassName: org.h2.Driver
+  spring:
+    activemq:
+      broker-url: tcp://localhost:61616
+      user: admin
+      password: admin
 inspector:
   ingestion-key: 81e6d4df93e1bfad8e9f3c062022e3a0d8a77dce

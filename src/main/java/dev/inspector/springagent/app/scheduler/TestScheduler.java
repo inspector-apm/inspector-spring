@@ -1,7 +1,7 @@
-package dev.inspector.springagent.scheduler;
+package dev.inspector.springagent.app.scheduler;
 
-import dev.inspector.springagent.entity.User;
-import dev.inspector.springagent.repository.TestRepository;
+import dev.inspector.springagent.app.entity.User;
+import dev.inspector.springagent.app.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

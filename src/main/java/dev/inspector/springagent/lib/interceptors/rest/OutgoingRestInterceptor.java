@@ -1,7 +1,7 @@
-package dev.inspector.springagent.interceptors.rest;
+package dev.inspector.springagent.lib.interceptors.rest;
 
-import dev.inspector.springagent.inspectors.InspectorPicker;
-import dev.inspector.springagent.inspectors.InspectorType;
+import dev.inspector.springagent.lib.inspectors.InspectorPicker;
+import dev.inspector.springagent.lib.inspectors.InspectorType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;

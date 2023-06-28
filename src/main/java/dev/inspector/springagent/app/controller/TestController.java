@@ -1,6 +1,6 @@
-package dev.inspector.springagent.controller;
+package dev.inspector.springagent.app.controller;
 
-import dev.inspector.springagent.service.TestServiceImpl;
+import dev.inspector.springagent.app.service.TestServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

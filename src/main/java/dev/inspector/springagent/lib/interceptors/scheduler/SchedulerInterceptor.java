@@ -1,6 +1,6 @@
-package dev.inspector.springagent.interceptors.scheduler;
+package dev.inspector.springagent.lib.interceptors.scheduler;
 
-import dev.inspector.springagent.inspectors.SchedulerInspector;
+import dev.inspector.springagent.lib.inspectors.SchedulerInspector;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -22,6 +22,6 @@ public class SchedulerInterceptor {
     @After("@annotation(org.springframework.scheduling.annotation.Scheduled)")
     public void afterScheduledTask() {
         schedulerInspector.createSegment("Scheduler async", "Scheduler label");
-        schedulerInspector.flushTransaction("Scheduler Context");
+        schedulerInspector.closeTransaction("Scheduler Context");
     }
 }

@@ -1,6 +1,6 @@
-package dev.inspector.springagent.interceptors.rest;
+package dev.inspector.springagent.lib.interceptors.rest;
 
-import dev.inspector.springagent.inspectors.RestInspector;
+import dev.inspector.springagent.lib.inspectors.RestInspector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -25,7 +25,7 @@ public class RestInterceptor implements HandlerInterceptor {
     }
 
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-        restInspector.flushTransaction("REST Context");
+        restInspector.closeTransaction("REST Context");
     }
 
 }

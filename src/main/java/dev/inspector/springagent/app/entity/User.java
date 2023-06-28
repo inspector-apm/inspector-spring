@@ -1,4 +1,4 @@
-package dev.inspector.springagent.entity;
+package dev.inspector.springagent.app.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
