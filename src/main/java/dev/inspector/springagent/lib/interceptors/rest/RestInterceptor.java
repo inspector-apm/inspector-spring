@@ -16,6 +16,7 @@ public class RestInterceptor implements HandlerInterceptor {
     private RestInspector restInspector;
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        System.out.println("Incoming REST request intercepted.");
         restInspector.createTransaction("REST Transaction");
         return true;
     }

@@ -17,7 +17,7 @@ public class QueueInterceptor {
 
     @JmsListener(destination = "*")
     public void onMessage(String message) {
-        System.out.println("Message intercepted: " + message);
+        System.out.println("Message on queue intercepted: " + message);
         InspectorType currentInspector = inspectorPicker.getCurrentInspector();
         if (currentInspector == null) {
             queueInspector.createTransaction("Queue Transaction");

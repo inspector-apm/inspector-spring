@@ -16,6 +16,7 @@ public class SchedulerInterceptor {
 
     @Before("@annotation(org.springframework.scheduling.annotation.Scheduled)")
     public void beforeScheduledTask() {
+        System.out.println("Scheduler intercepted.");
         schedulerInspector.createTransaction("Scheduler Transaction");
     }
 

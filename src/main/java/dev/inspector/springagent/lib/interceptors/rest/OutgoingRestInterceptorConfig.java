@@ -8,7 +8,7 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-public class OutgoingRestConfig {
+public class OutgoingRestInterceptorConfig {
 
     @Autowired
     OutgoingRestInterceptor outgoingRestInterceptor;

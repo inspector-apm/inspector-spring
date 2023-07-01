@@ -14,7 +14,7 @@ public class TestController {
 
     @GetMapping("/test")
     void test(@RequestParam String name) {
-        System.out.println("REST request received");
+        System.out.println("REST request received.");
         testServiceImpl.findUser(name);
     }
 }

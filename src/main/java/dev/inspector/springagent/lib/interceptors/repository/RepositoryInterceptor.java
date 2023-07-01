@@ -17,6 +17,7 @@ public class RepositoryInterceptor {
 
     @Around("execution(* org.springframework.data.repository.Repository+.*(..))")
     public Object interceptQuery(ProceedingJoinPoint joinPoint) throws Throwable {
+        System.out.println("Query intercepted.");
         InspectorType currentInspector = inspectorPicker.getCurrentInspector();
         if (currentInspector != null)
             currentInspector.createSegment("Query async", "Query label");

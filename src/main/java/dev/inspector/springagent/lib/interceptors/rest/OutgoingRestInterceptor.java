@@ -19,6 +19,7 @@ public class OutgoingRestInterceptor implements ClientHttpRequestInterceptor {
 
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
+        System.out.println("Outgoing REST request intercepted.");
         InspectorType currentInspector = inspectorPicker.getCurrentInspector();
         if (currentInspector != null)
             currentInspector.createSegment("Outgoing REST async", "Outgoing REST label");
