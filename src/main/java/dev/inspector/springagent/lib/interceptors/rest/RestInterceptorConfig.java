@@ -15,7 +15,7 @@ public class RestInterceptorConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        String inspectedApiPath = "/*";
+        String inspectedApiPath = "/**";
         registry.addInterceptor(restInterceptor).addPathPatterns(inspectedApiPath);
     }
 

@@ -1,4 +1,5 @@
-package dev.inspector.springagent.lib.interceptors.queue;
+package dev.inspector.springagent.app.queue;
+
 
 import dev.inspector.springagent.lib.inspectors.InspectorPicker;
 import dev.inspector.springagent.lib.inspectors.InspectorType;

@@ -10,4 +10,4 @@ spring:
       user: admin
       password: admin
 inspector:
-  ingestion-key: 81e6d4df93e1bfad8e9f3c062022e3a0d8a77dce
+  ingestion-key: 69597a87ae16c25741ab1623c1b6be2e6b113ac8

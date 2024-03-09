@@ -23,10 +23,8 @@ public class TestServiceImpl implements TestService {
 
     public User findUser(String name) {
         executeOutgoingRESTRequest();
-        testMessagePush("Test message");
-        User user = null;
-        if (name != null)
-            user = testRepository.findByName(name);
+//        testMessagePush("Test message");
+        User user = testRepository.findByName(name);
         return user;
     }
 

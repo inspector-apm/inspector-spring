@@ -1,20 +1,20 @@
 package dev.inspector.springagent.app.controller;
 
+import dev.inspector.springagent.app.entity.User;
 import dev.inspector.springagent.app.service.TestServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/pluto")
 public class TestController {
 
     @Autowired
     private TestServiceImpl testServiceImpl;
 
-    @GetMapping("/test")
-    void test(@RequestParam String name) {
+    @GetMapping("/test/{name}")
+    User test(@PathVariable String name) {
         System.out.println("REST request received.");
-        testServiceImpl.findUser(name);
+        return testServiceImpl.findUser(name);
     }
 }
