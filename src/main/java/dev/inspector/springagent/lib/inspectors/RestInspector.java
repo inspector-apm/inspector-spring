@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class RestInspector extends AbstractInspector {
 
-    public RestInspector(@Value("${inspector.ingestion-key}")String ingestionKey, @Value("${inspector.ingestion-url}")String ingestionUrl) {
-        super(ingestionKey, ingestionUrl);
+    public RestInspector(@Value("${inspector.ingestion-key}")String ingestionKey, @Value("${inspector.time-to-flush}")String timeToFlush) {
+        super(ingestionKey, timeToFlush);
     }
 
 }

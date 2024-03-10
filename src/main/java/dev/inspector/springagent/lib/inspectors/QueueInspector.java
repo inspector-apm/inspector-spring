@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class QueueInspector extends AbstractInspector {
 
-    public QueueInspector(@Value("${inspector.ingestion-key}")String ingestionKey, @Value("${inspector.ingestion-url}")String ingestionUrl) {
-        super(ingestionKey, ingestionUrl);
+    public QueueInspector(@Value("${inspector.ingestion-key}")String ingestionKey, @Value("${inspector.time-to-flush}")String timeToFlush) {
+        super(ingestionKey, timeToFlush);
     }
 
 }

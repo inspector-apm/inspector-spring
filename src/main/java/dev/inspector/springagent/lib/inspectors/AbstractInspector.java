@@ -14,8 +14,8 @@ public abstract class AbstractInspector {
     private Transaction transaction;
     private long threadId;
 
-    public AbstractInspector(String ingestionKey, String ingestionUrl) {
-        Config config = new Config(ingestionKey, ingestionUrl);
+    public AbstractInspector(String ingestionKey, String timeToFlush) {
+        Config config = new Config(ingestionKey, timeToFlush);
         Inspector inspector = new Inspector(config);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> onShutdown(inspector)));
         this.inspector = inspector;

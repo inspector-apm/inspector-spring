@@ -21,7 +21,6 @@ public class RestInterceptor implements HandlerInterceptor {
         String pattern = (String) request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
 
         if (pattern != null) {
-            System.out.println("Original endpoint pattern: " + pattern);
             // Use the pattern as needed, for example, logging or transaction naming
             restInspector.createTransaction("REST Transaction: " + pattern);
         } else {
