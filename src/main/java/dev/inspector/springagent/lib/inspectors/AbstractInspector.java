@@ -8,14 +8,14 @@ import dev.inspector.agent.utility.JsonBuilder;
 
 import static dev.inspector.agent.App.waitMillis;
 
-public abstract class InspectorType {
+public abstract class AbstractInspector {
 
     private final Inspector inspector;
     private Transaction transaction;
     private long threadId;
 
-    public InspectorType(String ingestionKey) {
-        Config config = new Config(ingestionKey);
+    public AbstractInspector(String ingestionKey, String ingestionUrl) {
+        Config config = new Config(ingestionKey, ingestionUrl);
         Inspector inspector = new Inspector(config);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> onShutdown(inspector)));
         this.inspector = inspector;
@@ -23,11 +23,11 @@ public abstract class InspectorType {
 
     private void onShutdown(Inspector inspector) {
         System.out.println("qui c'è il flush finale");
-        inspector.flush();
+        inspector.shutdown();
     }
 
     public void createSegment(String segmentType, String segmentLabel) {
-        Segment segmentRef = inspector.addSegment((segment) -> {
+        Segment segmentRef = this.inspector.addSegment((segment) -> {
             waitMillis(1000L);
             String ptr = null;
             if (((String) ptr).equals("exception")) {
@@ -40,21 +40,21 @@ public abstract class InspectorType {
     }
 
     public void createTransaction(String transactionName) {
-        threadId = Thread.currentThread().getId();
-        transaction = inspector.startTransaction(transactionName);
+        this.threadId = Thread.currentThread().getId();
+        this.transaction = this.inspector.startTransaction(transactionName);
     }
 
     public void closeTransaction(String contextLabel) {
-        transaction.setResult("SUCCESS");
-        transaction.addContext(contextLabel, (new JsonBuilder()).put("contextkey", "contextvalue").build());
-        transaction.end();
+        this.transaction.setResult("SUCCESS");
+        this.transaction.addContext(contextLabel, (new JsonBuilder()).put("contextkey", "contextvalue").build());
+        this.transaction.end();
     }
 
     public Inspector getInspector() {
-        return inspector;
+        return this.inspector;
     }
 
     public long getThreadId() {
-        return threadId;
+        return this.threadId;
     }
 }

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class InspectorPicker {
+public class CurrentInspectorResolver {
 
     @Autowired
     private RestInspector restInspector;
@@ -13,9 +13,9 @@ public class InspectorPicker {
     @Autowired
     private QueueInspector queueInspector;
 
-    public InspectorType getCurrentInspector() {
-        long currentThreadId = Thread.currentThread().getId();
-        InspectorType currentInspector = null;
+    public AbstractInspector getCurrentInspector() {
+        Long currentThreadId = Thread.currentThread().getId();
+        AbstractInspector currentInspector = null;
         if (currentThreadId == restInspector.getThreadId())
             currentInspector = restInspector;
         else if (currentThreadId == schedulerInspector.getThreadId())

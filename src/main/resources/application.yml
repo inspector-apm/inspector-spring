@@ -11,3 +11,4 @@ spring:
       password: admin
 inspector:
   ingestion-key: 69597a87ae16c25741ab1623c1b6be2e6b113ac8
+  time-to-flush: 10000 # 10 seconds
