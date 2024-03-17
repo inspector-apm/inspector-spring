@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/pluto")
+@RequestMapping("/rest")
 public class TestController {
 
     @Autowired
     private TestServiceImpl testServiceImpl;
 
-    @GetMapping("/test/{name}")
+    @GetMapping("/hello/{name}")
     User test(@PathVariable String name) {
         System.out.println("REST request received.");
         return testServiceImpl.findUser(name);
