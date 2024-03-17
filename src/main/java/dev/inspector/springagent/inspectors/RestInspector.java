@@ -1,4 +1,4 @@
-package dev.inspector.springagent.lib.inspectors;
+package dev.inspector.springagent.inspectors;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package dev.inspector.springagent.lib.inspectors;
+package dev.inspector.springagent.inspectors;
 
 import dev.inspector.agent.executor.Inspector;
 import dev.inspector.agent.model.Config;

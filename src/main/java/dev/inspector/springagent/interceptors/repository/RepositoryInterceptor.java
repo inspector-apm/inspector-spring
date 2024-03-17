@@ -1,7 +1,7 @@
-package dev.inspector.springagent.lib.interceptors.repository;
+package dev.inspector.springagent.interceptors.repository;
 
-import dev.inspector.springagent.lib.inspectors.CurrentInspectorResolver;
-import dev.inspector.springagent.lib.inspectors.AbstractInspector;
+import dev.inspector.springagent.inspectors.CurrentInspectorResolver;
+import dev.inspector.springagent.inspectors.AbstractInspector;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

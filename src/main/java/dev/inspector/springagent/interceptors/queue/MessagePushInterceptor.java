@@ -1,9 +1,9 @@
-//package dev.inspector.springagent.lib.interceptors.queue;
+//package dev.inspector.springagent.interceptors.queue;
 //
 //import javax.jms.Message;
 //
-//import dev.inspector.springagent.lib.inspectors.CurrentInspectorResolver;
-//import dev.inspector.springagent.lib.inspectors.AbstractInspector;
+//import dev.inspector.springagent.inspectors.CurrentInspectorResolver;
+//import dev.inspector.springagent.inspectors.AbstractInspector;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.jms.core.MessagePostProcessor;
 //import org.springframework.stereotype.Component;

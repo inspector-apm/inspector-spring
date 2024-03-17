@@ -1,11 +1,10 @@
-package dev.inspector.springagent.lib.interceptors.rest;
+package dev.inspector.springagent.interceptors.rest;
 
-import dev.inspector.springagent.lib.inspectors.RestInspector;
+import dev.inspector.springagent.inspectors.RestInspector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.HandlerMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
