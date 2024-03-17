@@ -1,6 +1,6 @@
-package dev.inspector.springagent.config;
+package dev.inspector.spring.config;
 
-import dev.inspector.springagent.interceptors.rest.RestInterceptor;
+import dev.inspector.spring.interceptors.rest.RestInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;

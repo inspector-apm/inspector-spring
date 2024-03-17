@@ -1,6 +1,6 @@
-package dev.inspector.springagent.config;
+package dev.inspector.spring.config;
 
-import dev.inspector.springagent.interceptors.rest.OutgoingRestInterceptor;
+import dev.inspector.spring.interceptors.rest.OutgoingRestInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

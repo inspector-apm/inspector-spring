@@ -1,14 +1,4 @@
 spring:
-  datasource:
-    url: jdbc:h2:mem:mydb
-    username: sa
-    password: password
-    driverClassName: org.h2.Driver
-  spring:
-    activemq:
-      broker-url: tcp://localhost:61616
-      user: admin
-      password: admin
-inspector:
-  ingestion-key: 69597a87ae16c25741ab1623c1b6be2e6b113ac8
-  time-to-flush: 10000 # 10 seconds
+  application:
+    name: spring-agent
+

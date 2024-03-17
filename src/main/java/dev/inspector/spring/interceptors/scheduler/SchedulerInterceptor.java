@@ -1,6 +1,6 @@
-package dev.inspector.springagent.interceptors.scheduler;
+package dev.inspector.spring.interceptors.scheduler;
 
-import dev.inspector.springagent.inspectors.SchedulerInspector;
+import dev.inspector.spring.inspectors.SchedulerInspector;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
