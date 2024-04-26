@@ -1,7 +1,6 @@
 package dev.inspector.spring.interceptors.repository;
 
-import dev.inspector.spring.inspectors.CurrentInspectorResolver;
-import dev.inspector.spring.inspectors.AbstractInspector;
+import dev.inspector.agent.executor.Inspector;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -13,13 +12,11 @@ import org.springframework.stereotype.Component;
 public class RepositoryInterceptor {
 
     @Autowired
-    CurrentInspectorResolver currentInspectorResolver;
+    Inspector inspector;
 
     @Around("execution(* org.springframework.data.repository.Repository+.*(..))")
     public Object interceptQuery(ProceedingJoinPoint joinPoint) throws Throwable {
-        AbstractInspector currentInspector = currentInspectorResolver.getCurrentInspector();
-        if (currentInspector != null)
-            currentInspector.createSegment("Query async", "Query label");
+        inspector.startSegment("Query async", "Query label");
         return joinPoint.proceed();
     }
 

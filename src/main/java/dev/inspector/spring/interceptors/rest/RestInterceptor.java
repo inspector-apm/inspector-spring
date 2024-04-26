@@ -1,6 +1,6 @@
 package dev.inspector.spring.interceptors.rest;
 
-import dev.inspector.spring.inspectors.RestInspector;
+import dev.inspector.agent.executor.Inspector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class RestInterceptor implements HandlerInterceptor {
 
     @Autowired
-    private RestInspector restInspector;
+    Inspector inspector;
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         // Extract the original URI template
@@ -21,10 +21,10 @@ public class RestInterceptor implements HandlerInterceptor {
 
         if (pattern != null) {
             // Use the pattern as needed, for example, logging or transaction naming
-            restInspector.createTransaction("REST Transaction: " + pattern);
+            inspector.startTransaction("REST Transaction: " + pattern);
         } else {
             System.out.println("Incoming REST request intercepted.");
-            restInspector.createTransaction("REST Transaction");
+            inspector.startTransaction("REST Transaction");
         }
 
         return true;
@@ -32,7 +32,7 @@ public class RestInterceptor implements HandlerInterceptor {
 
 
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-        restInspector.closeTransaction("REST Context");
+        inspector.closeTransaction("REST Context");
     }
 
 }

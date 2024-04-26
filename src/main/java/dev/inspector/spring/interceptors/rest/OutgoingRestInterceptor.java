@@ -1,7 +1,6 @@
 package dev.inspector.spring.interceptors.rest;
 
-import dev.inspector.spring.inspectors.CurrentInspectorResolver;
-import dev.inspector.spring.inspectors.AbstractInspector;
+import dev.inspector.agent.executor.Inspector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
@@ -15,15 +14,12 @@ import java.io.IOException;
 public class OutgoingRestInterceptor implements ClientHttpRequestInterceptor {
 
     @Autowired
-    private CurrentInspectorResolver currentInspectorResolver;
+    Inspector inspector;
 
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
         System.out.println("Outgoing REST request intercepted.");
-        AbstractInspector currentInspector = currentInspectorResolver.getCurrentInspector();
-        if (currentInspector != null)
-            currentInspector.createSegment("Outgoing REST async", "Outgoing REST label");
-        // Returning response
+        inspector.startSegment("Outgoing REST async", "Outgoing REST label");
         return execution.execute(request, body);
     }
 }
