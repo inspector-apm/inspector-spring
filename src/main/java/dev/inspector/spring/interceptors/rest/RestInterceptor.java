@@ -1,10 +1,8 @@
 package dev.inspector.spring.interceptors.rest;
 
 import dev.inspector.spring.config.ConfigProperties;
-import dev.inspector.spring.inspectors.RestInspector;
 import dev.inspector.agent.executor.Inspector;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.HandlerMapping;
@@ -35,7 +33,7 @@ public class RestInterceptor implements HandlerInterceptor {
             inspector.startTransaction(String.format("%s - %s", request.getMethod(), pattern));
         } else {
             System.out.println("Incoming REST request intercepted.");
-            inspector.startTransaction("%s - %s", request.getMethod(), pattern));
+            inspector.startTransaction(String.format("%s - %s", request.getMethod(), pattern));
         }
 
         return true;
