@@ -1,5 +1,6 @@
 package dev.inspector.spring.config;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import dev.inspector.agent.executor.Inspector;
 import dev.inspector.agent.model.Config;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,17 +17,21 @@ public class InspectorBeanConfig {
     private String url;
 
     @Value(("${inspector.enabled}"))
-    private String enabled;
+    private Boolean enabled;
 
     @Value(("${inspector.version}"))
     private String version;
 
     @Value(("${inspector.max-entries}"))
-    private String maxEntries;
+    private Integer maxEntries;
 
     @Bean
     public Config inspectorConfig() {
-        Config config = new Config(ingestionKey, url, enabled, version, maxEntries);
+        Config config = new Config(ingestionKey);
+        config.setEnabled(enabled);
+        config.setUrl(url);
+        config.setMaxEntries(maxEntries);
+        config.setVersion(version);
         return config;
     }
 
