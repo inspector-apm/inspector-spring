@@ -12,12 +12,21 @@ public class InspectorBeanConfig {
     @Value("${inspector.ingestion-key}")
     private String ingestionKey;
 
-    @Value("${inspector.time-to-flush}")
-    private String timeToFlush;
+    @Value("${inspector.url}")
+    private String url;
+
+    @Value(("${inspector.enabled}"))
+    private String enabled;
+
+    @Value(("${inspector.version}"))
+    private String version;
+
+    @Value(("${inspector.max-entries}"))
+    private String maxEntries;
 
     @Bean
     public Config inspectorConfig() {
-        Config config = new Config(ingestionKey, timeToFlush);
+        Config config = new Config(ingestionKey, url, enabled, version, maxEntries);
         return config;
     }
 
