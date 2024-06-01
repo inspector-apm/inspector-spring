@@ -23,7 +23,6 @@ public class RestInterceptor implements HandlerInterceptor {
 
 
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-        inspector.closeTransaction("REST Context");
         inspector.flush();
     }
 

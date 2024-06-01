@@ -22,7 +22,6 @@ public class SchedulerInterceptor {
 
     @After("@annotation(org.springframework.scheduling.annotation.Scheduled)")
     public void afterScheduledTask() {
-        inspector.closeTransaction("Scheduler Context");
         inspector.flush();
     }
 }
