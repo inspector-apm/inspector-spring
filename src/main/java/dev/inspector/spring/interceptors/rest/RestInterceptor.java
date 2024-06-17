@@ -18,11 +18,16 @@ public class RestInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String pattern = (String) request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
         inspector.startTransaction(String.format("%s - %s", request.getMethod(), pattern));
+        //TODO: Add headers to the transaction usando il context. aggiungere nella mappa context:
+        // - request e come value ci metto tutto, dall'header alla query string
+        // - url
+
         return true;
     }
 
 
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+        //TODO: riprendere l'oggetto inspector e aggiungere context "label response con la response"
         inspector.flush();
     }
 
