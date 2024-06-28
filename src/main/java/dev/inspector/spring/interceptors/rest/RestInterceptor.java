@@ -1,6 +1,8 @@
 package dev.inspector.spring.interceptors.rest;
 
 import dev.inspector.agent.executor.Inspector;
+import dev.inspector.agent.model.Transaction;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -8,6 +10,7 @@ import org.springframework.web.servlet.HandlerMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Enumeration;
 
 @Component
 public class RestInterceptor implements HandlerInterceptor {
@@ -17,18 +20,55 @@ public class RestInterceptor implements HandlerInterceptor {
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String pattern = (String) request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
-        inspector.startTransaction(String.format("%s - %s", request.getMethod(), pattern));
-        //TODO: Add headers to the transaction usando il context. aggiungere nella mappa context:
-        // - request e come value ci metto tutto, dall'header alla query string
-        // - url
+        Transaction transaction = inspector.startTransaction(String.format("%s - %s", request.getMethod(), pattern));
+
+        // Crea l'oggetto JSON per la request
+        JSONObject jsonRequest = new JSONObject();
+        jsonRequest.put("method", request.getMethod());
+        jsonRequest.put("version", request.getProtocol());
+
+        // Aggiungi i dettagli del socket
+        JSONObject socketDetails = new JSONObject();
+        socketDetails.put("remote_address", request.getRemoteAddr());
+        socketDetails.put("encrypted", request.isSecure());
+        jsonRequest.put("socket", socketDetails);
+
+        // Aggiungi i cookies
+        JSONObject cookies = new JSONObject();
+        if (request.getCookies() != null) {
+            for (javax.servlet.http.Cookie cookie : request.getCookies()) {
+                cookies.put(cookie.getName(), cookie.getValue());
+            }
+        }
+        jsonRequest.put("cookies", cookies);
+
+        // Aggiungi gli headers
+        JSONObject headers = new JSONObject();
+        Enumeration<String> headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String headerName = headerNames.nextElement();
+            headers.put(headerName, request.getHeader(headerName));
+        }
+        jsonRequest.put("headers", headers);
+
+        // Aggiungi il contesto della request alla transazione
+        transaction.addContext("Request", jsonRequest);
+
+        // Crea l'oggetto JSON per l'URL
+        JSONObject jsonUrl = new JSONObject();
+        jsonUrl.put("protocol", request.getScheme());
+        jsonUrl.put("port", request.getServerPort());
+        jsonUrl.put("path", request.getRequestURI());
+        jsonUrl.put("search", request.getQueryString());
+        jsonUrl.put("full", request.getRequestURL().toString() + (request.getQueryString() != null ? "?" + request.getQueryString() : ""));
+
+        // Aggiungi il contesto dell'URL alla transazione
+        transaction.addContext("URL", jsonUrl);
 
         return true;
     }
 
-
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-        //TODO: riprendere l'oggetto inspector e aggiungere context "label response con la response"
         inspector.flush();
     }
-
 }
