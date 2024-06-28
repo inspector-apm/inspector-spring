@@ -1,6 +1,5 @@
 package dev.inspector.spring.config;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import dev.inspector.agent.executor.Inspector;
 import dev.inspector.agent.model.Config;
 import org.springframework.beans.factory.annotation.Value;
