@@ -13,6 +13,7 @@
 	<version>0.0.2</version>
 	<name>spring</name>
 	<description>Spring agent</description>
+
     <packaging>jar</packaging>
 	<properties>
 		<java.version>1.8</java.version>
