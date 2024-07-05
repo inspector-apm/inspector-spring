@@ -10,7 +10,10 @@ import org.springframework.web.servlet.HandlerMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.Enumeration;
+import java.util.stream.Collectors;
 
 @Component
 public class RestInterceptor implements HandlerInterceptor {
@@ -18,7 +21,7 @@ public class RestInterceptor implements HandlerInterceptor {
     @Autowired
     Inspector inspector;
 
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         String pattern = (String) request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
         Transaction transaction = inspector.startTransaction(String.format("%s - %s", request.getMethod(), pattern));
 
@@ -50,6 +53,10 @@ public class RestInterceptor implements HandlerInterceptor {
             headers.put(headerName, request.getHeader(headerName));
         }
         jsonRequest.put("headers", headers);
+
+        // Leggi il body della richiesta
+        String body = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        jsonRequest.put("body", body);
 
         // Aggiungi il contesto della request alla transazione
         transaction.addContext("Request", jsonRequest);
