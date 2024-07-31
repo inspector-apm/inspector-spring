@@ -76,6 +76,8 @@ public class RestInterceptor implements HandlerInterceptor {
     }
 
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+        Transaction transaction = inspector.getTransaction();
+        System.out.println(transaction);
         inspector.flush();
     }
 }
