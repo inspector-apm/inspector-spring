@@ -18,15 +18,11 @@ public class SchedulerInterceptor {
 
     @Before("@annotation(scheduled)")
     public void beforeScheduledTask(JoinPoint joinPoint, Scheduled scheduled) {
-        String methodName = joinPoint.getSignature().getName();
-        System.out.println("Scheduler intercepted before task: " + methodName);
-        inspector.startTransaction("Scheduler Transaction for " + methodName);
+        inspector.startTransaction(joinPoint.getSignature().getName());
     }
 
     @After("@annotation(scheduled)")
     public void afterScheduledTask(JoinPoint joinPoint, Scheduled scheduled) {
-        String methodName = joinPoint.getSignature().getName();
-        System.out.println("Scheduler intercepted after task: " + methodName);
         inspector.flush();
     }
 }
