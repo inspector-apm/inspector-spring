@@ -23,7 +23,7 @@ public class RestInterceptor implements HandlerInterceptor {
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         String pattern = (String) request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
-        Transaction transaction = inspector.startTransaction(String.format("%s - %s", request.getMethod(), pattern));
+        Transaction transaction = inspector.startTransaction(String.format("%s %s", request.getMethod(), pattern));
 
         // Crea l'oggetto JSON per la request
         JSONObject jsonRequest = new JSONObject();
