@@ -1,5 +1,8 @@
 package dev.inspector.spring.utils.http.request;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
 import java.io.ByteArrayInputStream;
@@ -7,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class CachedBodyServletInputStream extends ServletInputStream {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CachedBodyServletInputStream.class);
 
     private final InputStream cachedBodyInputStream;
 
@@ -24,7 +29,7 @@ public class CachedBodyServletInputStream extends ServletInputStream {
         try {
             return cachedBodyInputStream.available() == 0;
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Exception occured during checking if input stream is finished", e);
             return false;
         }
     }
