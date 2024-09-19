@@ -1,3 +1,7 @@
-spring:
-  application:
-    name: spring-agent
+  spring:
+    application:
+        name: spring-agent
+
+  decorator.datasource:
+      p6spy:
+        enable-logging: false
