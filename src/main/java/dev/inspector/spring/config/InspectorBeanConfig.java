@@ -34,8 +34,4 @@ public class InspectorBeanConfig {
         return config;
     }
 
-    @Bean
-    public Inspector inspector(Config config) {
-        return new Inspector(config);
-    }
 }

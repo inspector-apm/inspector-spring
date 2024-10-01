@@ -4,6 +4,7 @@ import com.p6spy.engine.common.StatementInformation;
 import com.p6spy.engine.event.SimpleJdbcEventListener;
 import dev.inspector.agent.executor.Inspector;
 import dev.inspector.agent.model.Segment;
+import dev.inspector.spring.interceptors.context.MonitoringContextHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +20,17 @@ public class JdbcInterceptor extends SimpleJdbcEventListener {
     private static final Logger LOGGER = LoggerFactory.getLogger(JdbcInterceptor.class);
 
 
-    private Inspector inspector;
+    private MonitoringContextHolder monitoringContextHolder;
 
     private final ThreadLocal<Segment> currentSegment = new ThreadLocal<>();
-    public  JdbcInterceptor(@Autowired Inspector inspector) {
-        this.inspector = inspector;
+    public  JdbcInterceptor(@Autowired MonitoringContextHolder monitoringContextHolder) {
+        this.monitoringContextHolder = monitoringContextHolder;
     }
 
     @Override
     public void onBeforeAnyExecute(StatementInformation statementInformation) {
         DatabaseInfo databaseInfo = DatabaseInfo.buildFrom(statementInformation);
+        Inspector inspector = monitoringContextHolder.getInspectorService();
 
         if (databaseInfo == null || !inspector.hasTransaction()) {
             return;
