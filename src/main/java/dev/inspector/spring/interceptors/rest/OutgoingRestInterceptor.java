@@ -2,6 +2,9 @@ package dev.inspector.spring.interceptors.rest;
 
 import dev.inspector.agent.executor.Inspector;
 import dev.inspector.agent.model.Segment;
+import dev.inspector.spring.interceptors.context.MonitoringContextHolder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
@@ -14,12 +17,18 @@ import java.io.IOException;
 @Component
 public class OutgoingRestInterceptor implements ClientHttpRequestInterceptor {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(OutgoingRestInterceptor.class);
+
     @Autowired
-    Inspector inspector;
+    private MonitoringContextHolder monitoringContextHolder;
 
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
-        System.out.println("Outgoing REST request intercepted.");
+        LOGGER.debug(
+                "Thread {}: Outgoing HTTP call intercepted. Starting monitoring segment",
+                Thread.currentThread().getName()
+        );
+        Inspector inspector = monitoringContextHolder.getInspectorService();
         Segment segment = inspector.startSegment("http", request.getURI().toString());
         try {
             return execution.execute(request, body);
