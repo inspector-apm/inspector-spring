@@ -2,7 +2,7 @@ package dev.inspector.spring.interceptors.error;
 
 import dev.inspector.agent.executor.Inspector;
 import dev.inspector.agent.model.Transaction;
-import dev.inspector.spring.interceptors.context.MonitoringContextHolder;
+import dev.inspector.spring.interceptors.context.InspectorMonitoringContext;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 public class GlobalExceptionHandler {
 
     @Autowired
-    private MonitoringContextHolder monitoringContextHolder;
+    private InspectorMonitoringContext inspectorMonitoringContext;
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception ex, HttpServletRequest request) {
@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
 //
 //        // Aggiungere il contesto dell'errore alla transazione
 //        transaction.addContext("Error", errorContext);
-        Inspector inspector = monitoringContextHolder.getInspectorService();
+        Inspector inspector = inspectorMonitoringContext.getInspectorService();
         inspector.reportException(ex);
         inspector.getTransaction().setResult("error");
 
@@ -45,7 +45,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleNotFoundException(NoHandlerFoundException ex, HttpServletRequest request) {
         // Log the error
         String methodName = request.getMethod() + " " + request.getRequestURI();
-        Inspector inspector = monitoringContextHolder.getInspectorService();
+        Inspector inspector = inspectorMonitoringContext.getInspectorService();
         Transaction transaction = inspector.startTransaction("Error Transaction for " + methodName);
 
         // Creare un oggetto JSON per il messaggio di errore
@@ -56,7 +56,7 @@ public class GlobalExceptionHandler {
         // Aggiungere il contesto dell'errore alla transazione
         transaction.addContext("Error", errorContext);
         inspector.flush();
-        monitoringContextHolder.removeInspectorService();
+        inspectorMonitoringContext.removeInspectorService();
 
         // Creare una risposta not found
         return new ResponseEntity<>("Resource not found", HttpStatus.NOT_FOUND);

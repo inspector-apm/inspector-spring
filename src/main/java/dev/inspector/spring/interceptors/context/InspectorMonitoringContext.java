@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MonitoringContextHolder {
+public class InspectorMonitoringContext {
 
     private Config inspectorConfig;
 
     private ThreadLocal<Inspector> inspectorServiceThreadSafeWrapper;
 
-    public MonitoringContextHolder(@Autowired Config inspectorConfig) {
+    public InspectorMonitoringContext(@Autowired Config inspectorConfig) {
         this.inspectorConfig = inspectorConfig;
         inspectorServiceThreadSafeWrapper = new ThreadLocal<>();
     }

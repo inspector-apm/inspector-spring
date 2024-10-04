@@ -2,7 +2,8 @@ package dev.inspector.spring.interceptors.rest;
 
 import dev.inspector.agent.executor.Inspector;
 import dev.inspector.agent.model.Transaction;
-import dev.inspector.spring.interceptors.context.MonitoringContextHolder;
+import dev.inspector.agent.model.TransactionType;
+import dev.inspector.spring.interceptors.context.InspectorMonitoringContext;
 import dev.inspector.spring.utils.http.request.CachedBodyHttpServletRequest;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -24,13 +25,13 @@ public class RestInterceptor implements HandlerInterceptor {
     private static final Logger LOGGER = LoggerFactory.getLogger(RestInterceptor.class);
 
     @Autowired
-    private MonitoringContextHolder monitoringContextHolder;
+    private InspectorMonitoringContext inspectorMonitoringContext;
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         CachedBodyHttpServletRequest cachedHttpRequest = new CachedBodyHttpServletRequest(request);
         String pattern = (String) cachedHttpRequest.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
-        Inspector inspector = monitoringContextHolder.getInspectorService();
-        Transaction transaction = inspector.startTransaction(String.format("%s %s", cachedHttpRequest.getMethod(), pattern));
+        Inspector inspector = inspectorMonitoringContext.getInspectorService();
+        Transaction transaction = inspector.startTransaction(String.format("%s %s", cachedHttpRequest.getMethod(), pattern)).withType(TransactionType.REQUEST);
 
         LOGGER.debug(
                 "Thread {}: Incoming http request intercepted. Starting monitoring transaction with hash {} ",
@@ -89,7 +90,7 @@ public class RestInterceptor implements HandlerInterceptor {
     }
 
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-        Inspector inspector = monitoringContextHolder.getInspectorService();
+        Inspector inspector = inspectorMonitoringContext.getInspectorService();
         Transaction transaction = inspector.getTransaction();
         transaction.setResult(String.valueOf(response.getStatus()));
         LOGGER.debug(
@@ -99,6 +100,6 @@ public class RestInterceptor implements HandlerInterceptor {
         );
 
         inspector.flush();
-        monitoringContextHolder.removeInspectorService();
+        inspectorMonitoringContext.removeInspectorService();
     }
 }
