@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>dev.inspector</groupId>
 	<artifactId>spring</artifactId>
-	<version>0.0.7</version>
+	<version>0.0.8</version>
 	<name>spring</name>
 	<description>Spring agent</description>
 
@@ -38,7 +38,7 @@
 		<dependency>
 			<groupId>dev.inspector</groupId>
 			<artifactId>agent</artifactId>
-			<version>0.0.5</version>
+			<version>0.1.4</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.github.gavlyukovskiy/p6spy-spring-boot-starter -->
 		<dependency>
