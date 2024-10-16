@@ -78,10 +78,9 @@ public class JdbcInterceptor extends SimpleJdbcEventListener {
         if (databaseInfo != null) {
             rootDBContext.put("connection", databaseInfo.getDatabaseProductName());
         }
-        rootDBContext.put("query", statementInformation.getSql());
 
         if (statementInformation instanceof PreparedStatementInformation) {
-            rootDBContext.put("queryWithValues", ((PreparedStatementInformation) statementInformation).getSqlWithValues());
+            rootDBContext.put("query", statementInformation.getSqlWithValues());
         }
 
         return Optional.of(rootDBContext);
