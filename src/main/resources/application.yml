@@ -10,4 +10,4 @@
     enabled: ${ENABLED:true}
     url: ${URL:https://ingest.inspector.dev}
     version: ${VERSION:0.0.9}
-    max-en\tries: ${MAX_ENTRIES:500}
+    max-entries: ${MAX_ENTRIES:500}
