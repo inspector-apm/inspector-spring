@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.HandlerMapping;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.stream.Collectors;
@@ -53,7 +53,7 @@ public class RestInterceptor implements HandlerInterceptor {
         // Aggiungi i cookies
         JSONObject cookies = new JSONObject();
         if (cachedHttpRequest.getCookies() != null) {
-            for (javax.servlet.http.Cookie cookie : cachedHttpRequest.getCookies()) {
+            for (jakarta.servlet.http.Cookie cookie : cachedHttpRequest.getCookies()) {
                 cookies.put(cookie.getName(), cookie.getValue());
             }
         }
