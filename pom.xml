@@ -68,12 +68,6 @@
 
 	<developers>
 		<developer>
-			<name>Alex Prezioso</name>
-			<email>a.prezioso@yahoo.com</email>
-			<organization>Inspector</organization>
-			<organizationUrl>https://inspector.dev</organizationUrl>
-		</developer>
-		<developer>
 			<name>Valerio Barbera</name>
 			<email>valerio@inspector.dev</email>
 			<organization>Inspector</organization>
