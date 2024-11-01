@@ -9,5 +9,5 @@
   inspector:
     enabled: ${ENABLED:true}
     url: ${URL:https://ingest.inspector.dev}
-    version: ${VERSION:0.0.9}
+    version: ${VERSION:0.1.0}
     max-entries: ${MAX_ENTRIES:500}
