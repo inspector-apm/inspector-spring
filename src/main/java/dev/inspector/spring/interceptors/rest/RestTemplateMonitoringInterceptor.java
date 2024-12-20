@@ -15,9 +15,9 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-public class OutgoingRestInterceptor implements ClientHttpRequestInterceptor {
+public class RestTemplateMonitoringInterceptor implements ClientHttpRequestInterceptor {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(OutgoingRestInterceptor.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RestTemplateMonitoringInterceptor.class);
 
     @Autowired
     private InspectorMonitoringContext inspectorMonitoringContext;
@@ -25,7 +25,7 @@ public class OutgoingRestInterceptor implements ClientHttpRequestInterceptor {
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
         LOGGER.debug(
-                "Thread {}: Outgoing HTTP call intercepted. Starting monitoring segment",
+                "Thread {}: Outgoing HTTP call from RestTemplate client intercepted. Starting monitoring segment",
                 Thread.currentThread().getName()
         );
         Inspector inspector = inspectorMonitoringContext.getInspectorService();

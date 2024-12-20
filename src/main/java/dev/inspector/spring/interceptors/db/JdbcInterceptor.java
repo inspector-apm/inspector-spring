@@ -22,10 +22,10 @@ public class JdbcInterceptor extends SimpleJdbcEventListener {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JdbcInterceptor.class);
 
-
     private InspectorMonitoringContext inspectorMonitoringContext;
 
     private final ThreadLocal<Segment> currentSegment = new ThreadLocal<>();
+
     public  JdbcInterceptor(@Autowired InspectorMonitoringContext inspectorMonitoringContext) {
         this.inspectorMonitoringContext = inspectorMonitoringContext;
     }

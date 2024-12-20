@@ -43,6 +43,44 @@ Add the following configuration to the `application.properties` file:
 inspector.ingestion-key=81e6d4df93xxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
+## Important notes
+
+### Database queries
+
+At the moment only JDBC calls are being monitored. This means that interactions with relational databases should be monitored,
+whether they are done via Spring Data or via low level JDBC API.
+
+Interactions with NoSql databases are currently not being monitored !!
+
+If you're using this library and not using spring data in your project please add the following line in your 
+**application.properties** to disable Spring Boot's auto-configuration attempt of data source beans:
+
+```spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration```
+
+### Outgoing HTTP calls
+
+Currently we only support outgoing http monitoring for RestTemplate http client.
+
+How to enable http monitoring for RestTemplate? 
+
+Manually add **RestTemplateMonitoringInterceptor** as an interceptor when creating your RestTemplate bean.
+Check the example in the snippet below:
+
+```dtd
+       @Autowired
+        private RestTemplateMonitoringInterceptor restTemplateInterceptor;
+        ...
+
+        @Bean
+        public RestTemplate restTemplate(RestTemplateBuilder builder) {
+        return builder
+        .interceptors(restTemplateInterceptor)
+        .build();
+        }
+```
+
+Other http clients will be supported soon !!
+
 ## Test & Deploy
 
 Run an HTTP request against your application (or navigate it with a browser) to see the first data flowing into the Inspector dashboard.
