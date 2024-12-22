@@ -37,7 +37,10 @@ public class DatabaseInfo {
             return null;
         }
 
-        String dbUrl = dev.inspector.spring.utils.StringUtils.removePrefix(dev.inspector.spring.utils.StringUtils.removePrefix(rawDbUrl, "jdbc:"), "p6spy:");
+        String dbUrl = dev.inspector.spring.utils.StringUtils.removePrefix(
+                dev.inspector.spring.utils.StringUtils.removePrefix(rawDbUrl, "jdbc:"),
+                "p6spy:"
+        );
         String[] dbUrlParts = dbUrl.split(":");
 
         String dbSystem = dbUrlParts[0];

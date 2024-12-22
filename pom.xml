@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>dev.inspector</groupId>
 	<artifactId>spring</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>spring</name>
 	<description>Spring agent</description>
 
@@ -206,8 +206,5 @@
 			</build>
 		</profile>
 	</profiles>
-
-
-
 
 </project>
