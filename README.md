@@ -52,7 +52,6 @@ Check the example in the snippet below:
 ```java
        @Autowired
        private RestTemplateMonitoringInterceptor restTemplateInterceptor;
-       ...
 
        @Bean
        public RestTemplate restTemplate(RestTemplateBuilder builder) {
