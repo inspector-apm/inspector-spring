@@ -42,20 +42,7 @@ Add the following configuration to the `application.properties` file:
 ```properties
 inspector.ingestion-key=81e6d4df93xxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
-
-## Important notes
-
-### Database queries
-
-At the moment only JDBC calls are being monitored. This means that interactions with relational databases are monitored,
-whether they are done via Spring Data or via low level JDBC API.
-
-If you're using this library and not using Spring Data in your project please add the following line in your 
-`application.properties` to disable Spring Boot's auto-configuration attempt of data source beans:
-
-```spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration```
-
-### Outgoing HTTP calls
+## Outgoing HTTP calls
 
 Currently we only support outgoing http monitoring for RestTemplate http client.
 
@@ -64,15 +51,15 @@ Check the example in the snippet below:
 
 ```dtd
        @Autowired
-        private RestTemplateMonitoringInterceptor restTemplateInterceptor;
-        ...
+       private RestTemplateMonitoringInterceptor restTemplateInterceptor;
+       ...
 
-        @Bean
-        public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        return builder
-        .interceptors(restTemplateInterceptor)
-        .build();
-        }
+       @Bean
+       public RestTemplate restTemplate(RestTemplateBuilder builder) {
+           return builder
+               .interceptors(restTemplateInterceptor)
+               .build();
+       }
 ```
 
 Other http clients will be supported soon!!
@@ -88,5 +75,19 @@ By default Inspector monitors:
 - Outgoing HTTP calls
 
 Once verified that everything works and your application is connected, you can deploy the integration into the production environment.
+
+## Important notes
+
+### Database queries
+
+At the moment only JDBC calls are being monitored. This means that interactions with relational databases are monitored,
+whether they are done via Spring Data or via low level JDBC API.
+
+If you're using this library and not using Spring Data in your project please add the following line in your 
+`application.properties` to disable Spring Boot's auto-configuration attempt of data source beans:
+
+```spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration```
+
+---
 
 > Write an email to [support@inspector.dev](mailto:support@inspector.dev) for further support, or drop in a live chat directly from your dashboard.
