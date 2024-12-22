@@ -89,4 +89,4 @@ If you're using this library and not using Spring Data in your project please ad
 
 ---
 
-> Write an email to [support@inspector.dev](mailto:support@inspector.dev) for further support, or drop in a live chat directly from your dashboard.
+> If you need further support write an email to [support@inspector.dev](mailto:support@inspector.dev), or drop in a live chat directly from your dashboard.
