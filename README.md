@@ -24,7 +24,7 @@ Add the package to your application's dependencies list in the `pom.xml` file:
 <dependency>
     <groupId>dev.inspector</groupId>
     <artifactId>spring</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
