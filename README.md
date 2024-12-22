@@ -47,13 +47,11 @@ inspector.ingestion-key=81e6d4df93xxxxxxxxxxxxxxxxxxxxxxxxxx
 
 ### Database queries
 
-At the moment only JDBC calls are being monitored. This means that interactions with relational databases should be monitored,
+At the moment only JDBC calls are being monitored. This means that interactions with relational databases are monitored,
 whether they are done via Spring Data or via low level JDBC API.
 
-Interactions with NoSql databases are currently not being monitored !!
-
-If you're using this library and not using spring data in your project please add the following line in your 
-**application.properties** to disable Spring Boot's auto-configuration attempt of data source beans:
+If you're using this library and not using Spring Data in your project please add the following line in your 
+`application.properties` to disable Spring Boot's auto-configuration attempt of data source beans:
 
 ```spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration```
 
@@ -61,9 +59,7 @@ If you're using this library and not using spring data in your project please ad
 
 Currently we only support outgoing http monitoring for RestTemplate http client.
 
-How to enable http monitoring for RestTemplate? 
-
-Manually add **RestTemplateMonitoringInterceptor** as an interceptor when creating your RestTemplate bean.
+To enable http monitoring for RestTemplate you have to manually add `RestTemplateMonitoringInterceptor` as an interceptor when creating your RestTemplate bean.
 Check the example in the snippet below:
 
 ```dtd
@@ -79,11 +75,11 @@ Check the example in the snippet below:
         }
 ```
 
-Other http clients will be supported soon !!
+Other http clients will be supported soon!!
 
 ## Test & Deploy
 
-Run an HTTP request against your application (or navigate it with a browser) to see the first data flowing into the Inspector dashboard.
+Run an HTTP request against your application (or navigate it with a browser) to see the first data flowing into the [Inspector dashboard](https://app.inspector.dev).
 By default Inspector monitors:
 
 - HTTP requests
@@ -93,4 +89,4 @@ By default Inspector monitors:
 
 Once verified that everything works and your application is connected, you can deploy the integration into the production environment.
 
-> Use the live chat in your dashboard if you have any questions.
+> Write an email to [support@inspector.dev](mailto:support@inspector.dev) for further support, or drop in a live chat directly from your dashboard.
