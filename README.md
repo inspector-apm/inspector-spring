@@ -49,7 +49,7 @@ Currently we only support outgoing http monitoring for RestTemplate http client.
 To enable http monitoring for RestTemplate you have to manually add `RestTemplateMonitoringInterceptor` as an interceptor when creating your RestTemplate bean.
 Check the example in the snippet below:
 
-```dtd
+```java
        @Autowired
        private RestTemplateMonitoringInterceptor restTemplateInterceptor;
        ...
