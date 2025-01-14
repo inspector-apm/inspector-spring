@@ -2,8 +2,12 @@
  
  > Before moving on, please consider giving us a GitHub star ⭐️. Thank you!
 
- ## Spring 2
- Use the version 0.x for Spring Boot v2.
+## Requirements
+
+- Spring 3.x
+
+
+## Install
 
 Add the package to your application's dependencies list in the `pom.xml` file:
 
@@ -11,24 +15,12 @@ Add the package to your application's dependencies list in the `pom.xml` file:
 <dependency>
     <groupId>dev.inspector</groupId>
     <artifactId>spring</artifactId>
-    <version>0.1.0</version>
-</dependency>
-```
-
- ## Spring 3
- Use the version 1.x for Spring Boot v3.
-
-Add the package to your application's dependencies list in the `pom.xml` file:
-
-```xml
-<dependency>
-    <groupId>dev.inspector</groupId>
-    <artifactId>spring</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 
 ## Reload the maven dependencies:
+
 Run the command below to update application dependencies.
 
 ```
@@ -85,8 +77,8 @@ whether they are done via Spring Data or via low level JDBC API.
 If you're using this library and not using Spring Data in your project please add the following line in your 
 `application.properties` to disable Spring Boot's auto-configuration attempt of data source beans:
 
-```spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration```
-
+```
+spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration```
 ---
 
 > If you need further support write an email to [support@inspector.dev](mailto:support@inspector.dev), or drop in a live chat directly from your dashboard.
