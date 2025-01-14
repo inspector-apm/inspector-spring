@@ -82,7 +82,9 @@ If you're using this library and not using Spring Data in your project please ad
 `application.properties` to disable Spring Boot's auto-configuration attempt of data source beans:
 
 ```
-spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration```
+spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+```
+
 ---
 
 > If you need further support write an email to [support@inspector.dev](mailto:support@inspector.dev), or drop in a live chat directly from your dashboard.
