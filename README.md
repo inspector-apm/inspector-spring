@@ -67,6 +67,10 @@ By default Inspector monitors:
 
 Once verified that everything works and your application is connected, you can deploy the integration into the production environment.
 
+## Official documentation
+
+[Check out the Official Documentation](https://docs.inspector.dev/guides/spring-boot)
+
 ## Important notes
 
 ### Database queries
