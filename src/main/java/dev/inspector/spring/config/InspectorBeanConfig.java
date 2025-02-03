@@ -1,12 +1,13 @@
 package dev.inspector.spring.config;
 
-import dev.inspector.agent.executor.Inspector;
 import dev.inspector.agent.model.Config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 @Configuration
+@PropertySource("classpath:inspector-spring-application.properties")
 public class InspectorBeanConfig {
 
     @Value("${inspector.ingestion-key}")
