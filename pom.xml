@@ -38,7 +38,7 @@
 		<dependency>
 			<groupId>dev.inspector</groupId>
 			<artifactId>agent</artifactId>
-			<version>[0.1.4,1.0.0)</version>
+			<version>[0.2.0,1.0.0)</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.github.gavlyukovskiy/p6spy-spring-boot-starter -->
 		<dependency>
