@@ -4,6 +4,7 @@ import dev.inspector.agent.executor.Inspector;
 import dev.inspector.agent.model.Transaction;
 import dev.inspector.agent.model.TransactionType;
 import dev.inspector.spring.interceptors.context.InspectorMonitoringContext;
+import dev.inspector.spring.utils.BlacklistMatcher;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -30,7 +31,7 @@ public class RestInterceptor implements HandlerInterceptor {
     private InspectorMonitoringContext inspectorMonitoringContext;
 
     @Autowired
-    private HttpRequestBlacklistMatcher requestBlacklistMatcher;
+    private BlacklistMatcher requestBlacklistMatcher;
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         if (requestBlacklistMatcher.isRequestBlacklisted(request)) {
